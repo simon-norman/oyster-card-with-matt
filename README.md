@@ -25,7 +25,7 @@ E.g. `my_oystercard.deduct(15)` will take £15 off the card.
 
 Using the method `touch_in` on an instance of Oystercard will update the `in_journey?` method to return `true`.
 
-The entry station must be passed to `touch_in`, and the card must record this. Calling `my_oystercard.entry_station` should return the station passed. 
+The entry station must be passed to `touch_in`, and the card must record this. Calling `my_oystercard.entry_station` should return the station passed.
 
 Using the method `touch_out` on an instance of Oystercard will update the `in_journey?` method to return `false`.
 
@@ -36,3 +36,7 @@ When calling `touch_out`, the entry station should be set to `nil`.
 #### Minimum amount for journeys
 
 When the oystercard balance is less than 1 (EG when the oyster card is first created), calling the method `touch_in` on an instance of Oystercard will throw an error "Insufficient balance to touch in."
+
+#### Journey history
+
+Each time a journey is made the entry station is recorded through the `touch_in` method, and the exit station is recorded through the `touch_out` method. These two pieces of information are stored as a hash. A card's overall journey history is stored as an array of hashes called `journey_history`.

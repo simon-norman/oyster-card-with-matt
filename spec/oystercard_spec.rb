@@ -1,7 +1,8 @@
 require 'oystercard'
 
 describe Oystercard do
-  let (:station_double) { double('entry_station') }
+  let (:entry_station_double) { double('entry_station') }
+  let (:exit_station_double) { double('exit_station') }
   let (:min_balance) { Oystercard::MIN_BALANCE }
 
   it 'has a balance of zero when it is created' do
@@ -23,12 +24,12 @@ describe Oystercard do
   it 'given has balance of 1 or more, updates journey status when touching in' do
     subject.top_up(min_balance)
 
-    subject.touch_in(station_double)
+    subject.touch_in(entry_station_double)
     expect(subject.in_journey?).to be true
   end
 
   it 'updates journey status when touching out' do
-    subject.touch_out
+    subject.touch_out(exit_station_double)
     expect(subject.in_journey?).to be false
   end
 
@@ -36,28 +37,39 @@ describe Oystercard do
     subject.top_up(min_balance - 0.01)
     expected_error = 'Insufficient balance to touch in.'
 
-    expect { subject.touch_in(station_double) }.to raise_error expected_error
+    expect { subject.touch_in(entry_station_double) }.to raise_error expected_error
   end
 
   it 'reduces the card balance by the minimum fare value' do
     subject.top_up(min_balance)
-    expect { subject.touch_out }.to change{subject.balance}.by(-min_balance)
+    expect { subject.touch_out(exit_station_double) }.to change{subject.balance}.by(-min_balance)
   end
 
   it 'will record the entry station when touching in' do
     subject.top_up(min_balance)
 
-    subject.touch_in(station_double)
+    subject.touch_in(entry_station_double)
 
-    expect(subject.entry_station).to eq(station_double)
+    expect(subject.entry_station).to eq(entry_station_double)
   end
 
   it 'will forget the entry station when touching out' do
     subject.top_up(min_balance)
 
-    subject.touch_in(station_double)
-    subject.touch_out
+    subject.touch_in(entry_station_double)
+    subject.touch_out(exit_station_double)
 
     expect(subject.entry_station).to eq(nil)
+  end
+
+  it 'has an empty journey_history by default' do
+    expect(subject.journey_history).to be_empty
+  end
+
+  it 'has 1 journey stored after a journey' do
+    subject.top_up(min_balance)
+    subject.touch_in(entry_station_double)
+    subject.touch_out(exit_station_double)
+    expect(subject.journey_history.length).to eq(1)
   end
 end
