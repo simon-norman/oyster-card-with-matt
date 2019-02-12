@@ -3,5 +3,5 @@ source 'https://rubygems.org' do
 end
 
 group :development, :test do
-  gem 'rspec', '~> 3.4.0'
+  gem 'rspec'
 end
