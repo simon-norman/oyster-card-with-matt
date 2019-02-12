@@ -14,3 +14,9 @@ E.g. `my_oystercard.top_up(10)` will top £10.
 Cards have a maximum balance limit of £90. If a user tries to top up a card taking the balance beyond this, the top-up will be unsuccessful and they'll receive an error message.
 
 E.g. `my_oystercard.top_up(150)` will give the error message `top-up unsuccessful, maximum balance of £90 exceeded`.
+
+#### Deducting money from a card
+
+Using the method `deduct` with an integer argument on an instance of Oystercard will reduce the balance on the card by the given amount.
+
+E.g. `my_oystercard.deduct(15)` will take £15 off the card.
