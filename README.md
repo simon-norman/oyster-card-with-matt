@@ -25,9 +25,13 @@ E.g. `my_oystercard.deduct(15)` will take £15 off the card.
 
 Using the method `touch_in` on an instance of Oystercard will update the `in_journey?` method to return `true`.
 
+The entry station must be passed to `touch_in`, and the card must record this. Calling `my_oystercard.entry_station` should return the station passed. 
+
 Using the method `touch_out` on an instance of Oystercard will update the `in_journey?` method to return `false`.
 
 Touching out of journeys will reduce the balance of the card by the minimum fare amount (£1).
+
+When calling `touch_out`, the entry station should be set to `nil`.
 
 #### Minimum amount for journeys
 
