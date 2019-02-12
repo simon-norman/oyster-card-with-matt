@@ -25,3 +25,7 @@ E.g. `my_oystercard.deduct(15)` will take £15 off the card.
 
 Using the method `touch_in` on an instance of Oystercard will update the `in_journey?` method to return `true`.
 Using the method `touch_out` on an instance of Oystercard will update the `in_journey?` method to return `false`.
+
+#### Minimum amount for journeys
+
+When the oystercard balance is less than 1 (EG when the oyster card is first created), calling the method `touch_in` on an instance of Oystercard will throw an error "Insufficient balance to touch in."
