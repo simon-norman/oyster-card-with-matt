@@ -22,4 +22,14 @@ describe Oystercard do
     subject.deduct(15)
     expect(subject.balance).to eq(inital_balance - 15)
   end
+
+  it 'updates journey status when touching in' do
+    subject.touch_in
+    expect(subject.in_journey?).to be true
+  end
+
+  it 'updates journey status when touching in' do
+    subject.touch_out
+    expect(subject.in_journey?).to be false
+  end
 end

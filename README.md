@@ -20,3 +20,8 @@ E.g. `my_oystercard.top_up(150)` will give the error message `top-up unsuccessfu
 Using the method `deduct` with an integer argument on an instance of Oystercard will reduce the balance on the card by the given amount.
 
 E.g. `my_oystercard.deduct(15)` will take £15 off the card.
+
+#### Touching in and out of journeys
+
+Using the method `touch_in` on an instance of Oystercard will update the `in_journey?` method to return `true`.
+Using the method `touch_out` on an instance of Oystercard will update the `in_journey?` method to return `false`.
