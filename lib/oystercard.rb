@@ -18,10 +18,6 @@ class Oystercard
     fail max_exceeded_error if (@balance + amount) > DEFAULT_LIMIT
   end
 
-  def deduct(amount)
-    @balance -= amount
-  end
-
   def in_journey?
     @in_journey
   end
@@ -32,10 +28,18 @@ class Oystercard
   end
 
   def check_has_min_balance
-    fail 'Insufficient balance to touch in.' if @balance < MIN_BALANCE 
+    fail 'Insufficient balance to touch in.' if @balance < MIN_BALANCE
   end
 
   def touch_out
     @in_journey = false
+    deduct(MIN_BALANCE)
   end
+
+  private
+  
+  def deduct(amount)
+    @balance -= amount
+  end
+
 end

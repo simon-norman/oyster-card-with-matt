@@ -24,7 +24,10 @@ E.g. `my_oystercard.deduct(15)` will take £15 off the card.
 #### Touching in and out of journeys
 
 Using the method `touch_in` on an instance of Oystercard will update the `in_journey?` method to return `true`.
+
 Using the method `touch_out` on an instance of Oystercard will update the `in_journey?` method to return `false`.
+
+Touching out of journeys will reduce the balance of the card by the minimum fare amount (£1).
 
 #### Minimum amount for journeys
 
