@@ -9,4 +9,8 @@ Tackling the Makers pair programming challenge - found here: https://github.com/
 
 Any instance of an oystercard can be topped up with a given monetary amount by calling the method `top_up` on the oystercard and passing an integer argument of the desired top-up amount.
 
-E.g. `my_oystercard.top_up(10)` will top up 10 units of currency.
+E.g. `my_oystercard.top_up(10)` will top £10.
+
+Cards have a maximum balance limit of £90. If a user tries to top up a card taking the balance beyond this, the top-up will be unsuccessful and they'll receive an error message.
+
+E.g. `my_oystercard.top_up(150)` will give the error message `top-up unsuccessful, maximum balance of £90 exceeded`.
