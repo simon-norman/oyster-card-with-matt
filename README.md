@@ -25,7 +25,9 @@ E.g. `my_oystercard.deduct(15)` will take £15 off the card.
 
 Using the method `touch_in` on an instance of Oystercard will update the `in_journey?` method to return `true`.
 
-The entry station must be passed to `touch_in`, and the card must record this. Calling `my_oystercard.entry_station` should return the station passed.
+The entry station must be created for the card to touch in, using `Station.new(name, zone)` (passing it the name and zone). 
+
+The station will then be passed to `touch_in`, and the card must record this. Calling `my_oystercard.entry_station` should return the station passed.
 
 Using the method `touch_out` on an instance of Oystercard will update the `in_journey?` method to return `false`.
 

@@ -37,7 +37,6 @@ class Oystercard
 
   def touch_out(exit_station)
     @current_journey[:exit_station] = exit_station
-    #h[:key] = "bar"
     @journey_history << @current_journey
     @current_journey = {}
 
